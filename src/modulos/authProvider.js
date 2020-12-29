@@ -1,11 +1,11 @@
 export default {
 
-    login: ({ username }) => {
+  login: ({ username, password }) => {
 
-        localStorage.setItem('username', username);
+    localStorage.setItem('user', "{}");
 
     /*
-     firebase.auth().signInWithEmailAndPassword(email, password)
+     firebase.auth().signInWithEmailAndPassword(username, password)
 
         .then((user) => {
 
@@ -37,42 +37,42 @@ export default {
         });
     */
 
-        return Promise.resolve();
+    return Promise.resolve();
 
-    },
+  },
 
-    logout: () => {
+  logout: () => {
 
-        localStorage.removeItem('username');
+    localStorage.removeItem('user');
 
-        return Promise.resolve();
+    return Promise.resolve();
 
-    },
+  },
 
-    checkError: ({ status }) => {
+  checkError: ({ status }) => {
 
-        if (status === 401 || status === 403) {
+    if (status === 401 || status === 403) {
 
-            localStorage.removeItem('username');
+      localStorage.removeItem('user');
 
-            return Promise.reject();
+      return Promise.reject();
 
-        }
+    }
 
-        return Promise.resolve();
+    return Promise.resolve();
 
-    },
+  },
 
-    checkAuth: () => {
+  checkAuth: () => {
 
-        return localStorage.getItem('username')
+    return localStorage.getItem('user')
 
-            ? Promise.resolve()
+      ? Promise.resolve()
 
-            : Promise.reject();
+      : Promise.reject();
 
-    },
+  },
 
-    getPermissions: () => Promise.resolve(),
+  getPermissions: () => Promise.resolve(),
 
 };
